@@ -1,0 +1,21 @@
+name: Deploy
+on:
+  push:
+    branches: main
+  workflow_dispatch:
+jobs:
+  deploy:
+    name: 🚀
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build schema
+        run: npm run gen
+
+      - name: Deploy pages
+        run: npm run deploy

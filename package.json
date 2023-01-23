@@ -1,0 +1,24 @@
+{
+  "name": "serverless-json-schema",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "gen": "typescript-json-schema './node_modules/@types/serverless/aws.d.ts' Aws.Serverless -o dist/latest.json",
+    "deploy": "node deploy.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dannywrayuk/serverless-json-schema.git"
+  },
+  "author": "dannywrayuk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dannywrayuk/serverless-json-schema/issues"
+  },
+  "homepage": "https://github.com/dannywrayuk/serverless-json-schema#readme",
+  "dependencies": {
+    "@types/serverless": "^3.12.9",
+    "gh-pages": "^5.0.0",
+    "typescript-json-schema": "^0.55.0"
+  }
+}
