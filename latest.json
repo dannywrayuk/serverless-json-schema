@@ -1,0 +1,2712 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "ActiveMq": {
+            "properties": {
+                "arn": {
+                    "type": "string"
+                },
+                "basicAuthArn": {
+                    "type": "string"
+                },
+                "batchSize": {
+                    "type": "number"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "queue": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Alb": {
+            "properties": {
+                "authorizers": {
+                    "$ref": "#/definitions/Authorizers"
+                },
+                "targetGroupPrefix": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "AlbEvent": {
+            "properties": {
+                "conditions": {
+                    "properties": {
+                        "host": {
+                            "type": "string"
+                        },
+                        "path": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "listenerArn": {
+                    "type": "string"
+                },
+                "priority": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "AlexaSkill": {
+            "properties": {
+                "appId": {
+                    "type": "string"
+                },
+                "enabled": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
+        "AlexaSmartHome": {
+            "properties": {
+                "appId": {
+                    "type": "string"
+                },
+                "enabled": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
+        "ApiGateway": {
+            "properties": {
+                "apiKeySourceType": {
+                    "enum": [
+                        "AUTHORIZER",
+                        "HEADER",
+                        "authorizer",
+                        "header"
+                    ],
+                    "type": "string"
+                },
+                "apiKeys": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "binaryMediaTypes": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "metrics": {
+                    "type": "boolean"
+                },
+                "minimumCompressionSize": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                },
+                "resourcePolicy": {
+                    "items": {
+                        "$ref": "#/definitions/ResourcePolicy"
+                    },
+                    "type": "array"
+                },
+                "restApiId": {
+                    "type": "string"
+                },
+                "restApiResources": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "type": "object"
+                },
+                "restApiRootResourceId": {
+                    "type": "string"
+                },
+                "shouldStartNameWithService": {
+                    "type": "boolean"
+                },
+                "usagePlan": {
+                    "$ref": "#/definitions/UsagePlan"
+                },
+                "websocketApiId": {}
+            },
+            "type": "object"
+        },
+        "Authorizers": {
+            "additionalProperties": {
+                "anyOf": [
+                    {
+                        "$ref": "#/definitions/CognitoAuthorizer"
+                    },
+                    {
+                        "$ref": "#/definitions/OidcAuthorizer"
+                    },
+                    {
+                        "$ref": "#/definitions/JwtAuthorizer"
+                    }
+                ]
+            },
+            "type": "object"
+        },
+        "AwsFunctionHandler": {
+            "properties": {
+                "awsKmsKeyArn": {
+                    "type": "string"
+                },
+                "condition": {
+                    "type": "string"
+                },
+                "dependsOn": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "destinations": {
+                    "$ref": "#/definitions/Destinations"
+                },
+                "disableLogs": {
+                    "type": "boolean"
+                },
+                "environment": {
+                    "$ref": "#/definitions/Environment"
+                },
+                "ephemeralStorageSize": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                },
+                "events": {
+                    "items": {
+                        "$ref": "#/definitions/Event"
+                    },
+                    "type": "array"
+                },
+                "fileSystemConfig": {
+                    "$ref": "#/definitions/FileSystemConfig"
+                },
+                "handler": {
+                    "type": "string"
+                },
+                "kmsKeyArn": {
+                    "type": "string"
+                },
+                "layers": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/definitions/Record<string,string>"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ]
+                    },
+                    "type": "array"
+                },
+                "memorySize": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                },
+                "name": {
+                    "type": "string"
+                },
+                "onError": {
+                    "type": "string"
+                },
+                "package": {
+                    "$ref": "#/definitions/Package"
+                },
+                "provisionedConcurrency": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                },
+                "reservedConcurrency": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                },
+                "role": {
+                    "type": "string"
+                },
+                "runtime": {
+                    "type": "string"
+                },
+                "tags": {
+                    "$ref": "#/definitions/Tags"
+                },
+                "timeout": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                },
+                "tracing": {
+                    "enum": [
+                        "Active",
+                        "PassThrough",
+                        false,
+                        true
+                    ]
+                },
+                "url": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/FunctionUrlConfig"
+                        },
+                        {
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                "vpc": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/Vpc"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "AwsFunctionImage": {
+            "properties": {
+                "awsKmsKeyArn": {
+                    "type": "string"
+                },
+                "condition": {
+                    "type": "string"
+                },
+                "dependsOn": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "destinations": {
+                    "$ref": "#/definitions/Destinations"
+                },
+                "disableLogs": {
+                    "type": "boolean"
+                },
+                "environment": {
+                    "$ref": "#/definitions/Environment"
+                },
+                "ephemeralStorageSize": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                },
+                "events": {
+                    "items": {
+                        "$ref": "#/definitions/Event"
+                    },
+                    "type": "array"
+                },
+                "fileSystemConfig": {
+                    "$ref": "#/definitions/FileSystemConfig"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "kmsKeyArn": {
+                    "type": "string"
+                },
+                "layers": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/definitions/Record<string,string>"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ]
+                    },
+                    "type": "array"
+                },
+                "memorySize": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                },
+                "name": {
+                    "type": "string"
+                },
+                "onError": {
+                    "type": "string"
+                },
+                "package": {
+                    "$ref": "#/definitions/Package"
+                },
+                "provisionedConcurrency": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                },
+                "reservedConcurrency": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                },
+                "role": {
+                    "type": "string"
+                },
+                "runtime": {
+                    "type": "string"
+                },
+                "tags": {
+                    "$ref": "#/definitions/Tags"
+                },
+                "timeout": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                },
+                "tracing": {
+                    "enum": [
+                        "Active",
+                        "PassThrough",
+                        false,
+                        true
+                    ]
+                },
+                "url": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/FunctionUrlConfig"
+                        },
+                        {
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                "vpc": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/Vpc"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "CloudFormationResource": {
+            "properties": {
+                "Condition": {
+                    "type": "string"
+                },
+                "DeletionPolicy": {
+                    "type": "string"
+                },
+                "DependsOn": {
+                    "anyOf": [
+                        {
+                            "additionalProperties": {},
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "Properties": {
+                    "additionalProperties": {},
+                    "type": "object"
+                },
+                "Type": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "CloudFormationResources": {
+            "additionalProperties": {
+                "$ref": "#/definitions/CloudFormationResource"
+            },
+            "type": "object"
+        },
+        "CloudFront": {
+            "properties": {
+                "eventType": {
+                    "type": "string"
+                },
+                "includeBody": {
+                    "type": "boolean"
+                },
+                "origin": {
+                    "$ref": "#/definitions/Origin"
+                },
+                "pathPattern": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "CloudwatchEvent": {
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "event": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/CloudwatchEventInternalEvent"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "input": {
+                    "$ref": "#/definitions/Input"
+                },
+                "inputPath": {
+                    "type": "string"
+                },
+                "inputTransformer": {
+                    "$ref": "#/definitions/InputTransformer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "CloudwatchEventInternalEvent": {
+            "properties": {
+                "account": {
+                    "type": "string"
+                },
+                "detail": {
+                    "additionalProperties": true,
+                    "properties": {},
+                    "type": "object"
+                },
+                "detail-type": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "region": {
+                    "type": "string"
+                },
+                "resources": {
+                    "description": "Supposed to be array of ARNs but needs more info",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "source": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "time": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "CloudwatchLog": {
+            "properties": {
+                "filter": {
+                    "type": "string"
+                },
+                "logGroup": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "CognitoAuthorizer": {
+            "properties": {
+                "allowUnauthenticated": {
+                    "type": "boolean"
+                },
+                "requestExtraParams": {
+                    "properties": {
+                        "prompt": {
+                            "type": "string"
+                        },
+                        "redirect": {
+                            "type": "boolean"
+                        }
+                    },
+                    "type": "object"
+                },
+                "scope": {
+                    "type": "string"
+                },
+                "sessionCookieName": {
+                    "type": "string"
+                },
+                "sessionTimeout": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                },
+                "type": {
+                    "enum": [
+                        "cognito"
+                    ],
+                    "type": "string"
+                },
+                "userPoolArn": {
+                    "type": "string"
+                },
+                "userPoolClientId": {
+                    "type": "string"
+                },
+                "userPoolDomain": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "CognitoUserPool": {
+            "properties": {
+                "existing": {
+                    "type": "boolean"
+                },
+                "pool": {
+                    "type": "string"
+                },
+                "trigger": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Custom": {
+            "additionalProperties": {},
+            "type": "object"
+        },
+        "DeadLetterTargetImport": {
+            "properties": {
+                "arn": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "DeploymentBucket": {
+            "properties": {
+                "blockPublicAccess": {
+                    "type": "boolean"
+                },
+                "maxPreviousDeploymentArtifacts": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                },
+                "name": {
+                    "type": "string"
+                },
+                "serverSideEncryption": {
+                    "type": "string"
+                },
+                "skipPolicySetup": {
+                    "type": "boolean"
+                },
+                "sseCustomerAlgorithim": {
+                    "type": "string"
+                },
+                "sseCustomerKey": {
+                    "type": "string"
+                },
+                "sseCustomerKeyMD5": {
+                    "type": "string"
+                },
+                "sseKMSKeyId": {
+                    "type": "string"
+                },
+                "tags": {
+                    "$ref": "#/definitions/Tags"
+                }
+            },
+            "type": "object"
+        },
+        "Destinations": {
+            "properties": {
+                "onFailure": {
+                    "type": "string"
+                },
+                "onSuccess": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Detail": {
+            "additionalProperties": {
+                "items": {
+                    "type": "string"
+                },
+                "type": "array"
+            },
+            "type": "object"
+        },
+        "Environment": {
+            "additionalProperties": {},
+            "type": "object"
+        },
+        "Event": {
+            "properties": {
+                "activemq": {
+                    "$ref": "#/definitions/ActiveMq"
+                },
+                "alb": {
+                    "$ref": "#/definitions/AlbEvent"
+                },
+                "alexaSkill": {
+                    "$ref": "#/definitions/AlexaSkill"
+                },
+                "alexaSmartHome": {
+                    "$ref": "#/definitions/AlexaSmartHome"
+                },
+                "cloudFront": {
+                    "$ref": "#/definitions/CloudFront"
+                },
+                "cloudwatchEvent": {
+                    "$ref": "#/definitions/CloudwatchEvent"
+                },
+                "cloudwatchLog": {
+                    "$ref": "#/definitions/CloudwatchLog"
+                },
+                "cognitoUserPool": {
+                    "$ref": "#/definitions/CognitoUserPool"
+                },
+                "eventBridge": {
+                    "$ref": "#/definitions/EventBridge"
+                },
+                "http": {
+                    "$ref": "#/definitions/Http"
+                },
+                "httpApi": {
+                    "$ref": "#/definitions/HttpApiEvent"
+                },
+                "iot": {
+                    "$ref": "#/definitions/Iot"
+                },
+                "msk": {
+                    "$ref": "#/definitions/Msk"
+                },
+                "rabbitmq": {
+                    "$ref": "#/definitions/RabbitMq"
+                },
+                "s3": {
+                    "$ref": "#/definitions/S3"
+                },
+                "schedule": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/Schedule"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "sns": {
+                    "$ref": "#/definitions/Sns"
+                },
+                "sqs": {
+                    "$ref": "#/definitions/Sqs"
+                },
+                "stream": {
+                    "$ref": "#/definitions/Stream"
+                },
+                "websocket": {
+                    "$ref": "#/definitions/Websocket"
+                }
+            },
+            "type": "object"
+        },
+        "EventBridge": {
+            "properties": {
+                "eventBus": {
+                    "type": "string"
+                },
+                "input": {
+                    "$ref": "#/definitions/Input"
+                },
+                "inputPath": {
+                    "type": "string"
+                },
+                "inputTransformer": {
+                    "$ref": "#/definitions/InputTransformer"
+                },
+                "pattern": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/PatternExisting"
+                        },
+                        {
+                            "$ref": "#/definitions/PatternInput"
+                        }
+                    ]
+                },
+                "schedule": {
+                    "type": "string"
+                },
+                "useCloudFormation": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
+        "FileSystemConfig": {
+            "properties": {
+                "arn": {
+                    "type": "string"
+                },
+                "localMountPath": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Filter": {
+            "anyOf": [
+                {
+                    "properties": {
+                        "anything-but": {
+                            "items": {
+                                "$ref": "#/definitions/Filter"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "type": "object"
+                },
+                {
+                    "properties": {
+                        "numeric": {
+                            "$ref": "#/definitions/NumericFilter"
+                        }
+                    },
+                    "type": "object"
+                },
+                {
+                    "properties": {
+                        "exists": {
+                            "type": "boolean"
+                        }
+                    },
+                    "type": "object"
+                },
+                {
+                    "properties": {
+                        "prefix": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
+        "FilterPattern": {
+            "additionalProperties": {
+                "anyOf": [
+                    {
+                        "$ref": "#/definitions/FilterPattern"
+                    },
+                    {
+                        "items": {
+                            "$ref": "#/definitions/Filter"
+                        },
+                        "type": "array"
+                    }
+                ]
+            },
+            "type": "object"
+        },
+        "FunctionUrlConfig": {
+            "properties": {
+                "authorizer": {
+                    "enum": [
+                        "aws_iam"
+                    ],
+                    "type": "string"
+                },
+                "cors": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/FunctionUrlConfigCors"
+                        },
+                        {
+                            "type": "boolean"
+                        }
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "FunctionUrlConfigCors": {
+            "properties": {
+                "allowCredentials": {
+                    "type": "boolean"
+                },
+                "allowedHeaders": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                "allowedMethods": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                "allowedOrigins": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                "exposedResponseHeaders": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                "maxAge": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "Functions": {
+            "additionalProperties": {
+                "anyOf": [
+                    {
+                        "$ref": "#/definitions/AwsFunctionHandler"
+                    },
+                    {
+                        "$ref": "#/definitions/AwsFunctionImage"
+                    }
+                ]
+            },
+            "type": "object"
+        },
+        "Http": {
+            "properties": {
+                "async": {
+                    "type": "boolean"
+                },
+                "authorizer": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/HttpAuthorizer"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "cors": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/HttpCors"
+                        },
+                        {
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                "integration": {
+                    "enum": [
+                        "lambda",
+                        "mock"
+                    ],
+                    "type": "string"
+                },
+                "method": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "private": {
+                    "type": "boolean"
+                },
+                "request": {
+                    "$ref": "#/definitions/HttpRequestValidation"
+                }
+            },
+            "type": "object"
+        },
+        "HttpApi": {
+            "properties": {
+                "authorizers": {
+                    "$ref": "#/definitions/Authorizers"
+                },
+                "cors": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/HttpApiCors"
+                        },
+                        {
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "payload": {
+                    "type": "string"
+                },
+                "useProviderTags": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
+        "HttpApiCors": {
+            "properties": {
+                "allowCredentials": {
+                    "type": "boolean"
+                },
+                "allowedHeaders": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "allowedMethods": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "allowedOrigins": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "exposedResponseHeaders": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "maxAge": {
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "HttpApiEvent": {
+            "properties": {
+                "authorizer": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/NamedHttpApiEventAuthorizer"
+                        },
+                        {
+                            "$ref": "#/definitions/IdRefHttpApiEventAuthorizer"
+                        }
+                    ]
+                },
+                "method": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "HttpApiLogs": {
+            "properties": {
+                "format": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "HttpAuthorizer": {
+            "properties": {
+                "arn": {
+                    "type": "string"
+                },
+                "identitySource": {
+                    "type": "string"
+                },
+                "identityValidationExpression": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "resultTtlInSeconds": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "HttpCors": {
+            "properties": {
+                "allowCredentials": {
+                    "type": "boolean"
+                },
+                "cacheControl": {
+                    "type": "string"
+                },
+                "headers": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "maxAge": {
+                    "type": "number"
+                },
+                "origins": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "HttpRequestParametersValidation": {
+            "properties": {
+                "headers": {
+                    "additionalProperties": {
+                        "type": "boolean"
+                    },
+                    "type": "object"
+                },
+                "paths": {
+                    "additionalProperties": {
+                        "type": "boolean"
+                    },
+                    "type": "object"
+                },
+                "querystrings": {
+                    "additionalProperties": {
+                        "type": "boolean"
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "HttpRequestValidation": {
+            "properties": {
+                "parameters": {
+                    "$ref": "#/definitions/HttpRequestParametersValidation"
+                },
+                "schemas": {
+                    "additionalProperties": {
+                        "$ref": "#/definitions/Record<string,unknown>"
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "IamRole": {
+            "properties": {
+                "managedPolicies": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "permissionBoundary": {
+                    "type": "string"
+                },
+                "statements": {
+                    "items": {
+                        "$ref": "#/definitions/IamRoleStatement"
+                    },
+                    "type": "array"
+                },
+                "tags": {
+                    "$ref": "#/definitions/Tags"
+                }
+            },
+            "type": "object"
+        },
+        "IamRoleStatement": {
+            "properties": {
+                "Action": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "additionalProperties": {},
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "Condition": {
+                    "additionalProperties": {},
+                    "type": "object"
+                },
+                "Effect": {
+                    "enum": [
+                        "Allow",
+                        "Deny"
+                    ],
+                    "type": "string"
+                },
+                "NotAction": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "additionalProperties": {},
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "NotResource": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "additionalProperties": {},
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "Resource": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "additionalProperties": {},
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "Sid": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "IamSettings": {
+            "properties": {
+                "deploymentRole": {
+                    "type": "string"
+                },
+                "role": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/IamRole"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "IdRefHttpApiEventAuthorizer": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "scopes": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "Input": {
+            "additionalProperties": {},
+            "type": "object"
+        },
+        "InputTransformer": {
+            "properties": {
+                "inputPathsMap": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "type": "object"
+                },
+                "inputTemplate": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Iot": {
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "sql": {
+                    "type": "string"
+                },
+                "sqlVersion": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "JwtAuthorizer": {
+            "properties": {
+                "audience": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "identitySource": {
+                    "type": "string"
+                },
+                "issuerUrl": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Layer": {
+            "properties": {
+                "allowedAccounts": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "compatibleRuntimes": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "licenseInfo": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "retain": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
+        "Layers": {
+            "additionalProperties": {
+                "$ref": "#/definitions/Layer"
+            },
+            "type": "object"
+        },
+        "Logs": {
+            "properties": {
+                "frameworkLambda": {
+                    "type": "boolean"
+                },
+                "httpApi": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/HttpApiLogs"
+                        },
+                        {
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                "restApi": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/RestApiLogs"
+                        },
+                        {
+                            "enum": [
+                                true
+                            ],
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                "websocket": {
+                    "$ref": "#/definitions/WebsocketLogs"
+                }
+            },
+            "type": "object"
+        },
+        "Msk": {
+            "properties": {
+                "arn": {
+                    "type": "string"
+                },
+                "batchSize": {
+                    "type": "number"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "startingPosition": {
+                    "enum": [
+                        "LATEST",
+                        "TRIM_HORIZON"
+                    ],
+                    "type": "string"
+                },
+                "topic": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "NamedHttpApiEventAuthorizer": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "scopes": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "NumericFilter": {
+            "anyOf": [
+                {
+                    "items": [
+                        {
+                            "enum": [
+                                "="
+                            ],
+                            "type": "string"
+                        },
+                        {
+                            "type": "number"
+                        }
+                    ],
+                    "maxItems": 2,
+                    "minItems": 2,
+                    "type": "array"
+                },
+                {
+                    "items": [
+                        {
+                            "enum": [
+                                "<"
+                            ],
+                            "type": "string"
+                        },
+                        {
+                            "type": "number"
+                        }
+                    ],
+                    "maxItems": 2,
+                    "minItems": 2,
+                    "type": "array"
+                },
+                {
+                    "items": [
+                        {
+                            "enum": [
+                                "<="
+                            ],
+                            "type": "string"
+                        },
+                        {
+                            "type": "number"
+                        }
+                    ],
+                    "maxItems": 2,
+                    "minItems": 2,
+                    "type": "array"
+                },
+                {
+                    "items": [
+                        {
+                            "enum": [
+                                ">"
+                            ],
+                            "type": "string"
+                        },
+                        {
+                            "type": "number"
+                        }
+                    ],
+                    "maxItems": 2,
+                    "minItems": 2,
+                    "type": "array"
+                },
+                {
+                    "items": [
+                        {
+                            "enum": [
+                                ">="
+                            ],
+                            "type": "string"
+                        },
+                        {
+                            "type": "number"
+                        }
+                    ],
+                    "maxItems": 2,
+                    "minItems": 2,
+                    "type": "array"
+                },
+                {
+                    "items": [
+                        {
+                            "enum": [
+                                ">"
+                            ],
+                            "type": "string"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "enum": [
+                                "<"
+                            ],
+                            "type": "string"
+                        },
+                        {
+                            "type": "number"
+                        }
+                    ],
+                    "maxItems": 4,
+                    "minItems": 4,
+                    "type": "array"
+                },
+                {
+                    "items": [
+                        {
+                            "enum": [
+                                ">="
+                            ],
+                            "type": "string"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "enum": [
+                                "<"
+                            ],
+                            "type": "string"
+                        },
+                        {
+                            "type": "number"
+                        }
+                    ],
+                    "maxItems": 4,
+                    "minItems": 4,
+                    "type": "array"
+                },
+                {
+                    "items": [
+                        {
+                            "enum": [
+                                ">"
+                            ],
+                            "type": "string"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "enum": [
+                                "<="
+                            ],
+                            "type": "string"
+                        },
+                        {
+                            "type": "number"
+                        }
+                    ],
+                    "maxItems": 4,
+                    "minItems": 4,
+                    "type": "array"
+                },
+                {
+                    "items": [
+                        {
+                            "enum": [
+                                ">="
+                            ],
+                            "type": "string"
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "enum": [
+                                "<="
+                            ],
+                            "type": "string"
+                        },
+                        {
+                            "type": "number"
+                        }
+                    ],
+                    "maxItems": 4,
+                    "minItems": 4,
+                    "type": "array"
+                }
+            ]
+        },
+        "OidcAuthorizer": {
+            "properties": {
+                "allowUnauthenticated": {
+                    "type": "boolean"
+                },
+                "authorizationEndpoint": {
+                    "type": "string"
+                },
+                "clientId": {
+                    "type": "string"
+                },
+                "clientSecret": {
+                    "type": "string"
+                },
+                "issuer": {
+                    "type": "string"
+                },
+                "requestExtraParams": {
+                    "properties": {
+                        "prompt": {
+                            "type": "string"
+                        },
+                        "redirect": {
+                            "type": "boolean"
+                        }
+                    },
+                    "type": "object"
+                },
+                "scope": {
+                    "type": "string"
+                },
+                "sessionCookieName": {
+                    "type": "string"
+                },
+                "sessionTimeout": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                },
+                "tokenEndpoint": {
+                    "type": "string"
+                },
+                "type": {
+                    "enum": [
+                        "oidc"
+                    ],
+                    "type": "string"
+                },
+                "useExistingClientSecret": {
+                    "type": "boolean"
+                },
+                "userInfoEndpoint": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Origin": {
+            "properties": {
+                "CustomOriginConfig": {
+                    "properties": {
+                        "OriginProtocolPolicy": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "DomainName": {
+                    "type": "string"
+                },
+                "OriginPath": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Output": {
+            "properties": {
+                "Condition": {},
+                "Description": {
+                    "type": "string"
+                },
+                "Export": {
+                    "properties": {
+                        "Name": {}
+                    },
+                    "type": "object"
+                },
+                "Value": {}
+            },
+            "type": "object"
+        },
+        "Outputs": {
+            "additionalProperties": {
+                "$ref": "#/definitions/Output"
+            },
+            "type": "object"
+        },
+        "Package": {
+            "properties": {
+                "artifact": {
+                    "type": "string"
+                },
+                "exclude": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "excludeDevDependencies": {
+                    "type": "boolean"
+                },
+                "include": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "individually": {
+                    "type": "boolean"
+                },
+                "patterns": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "PatternExisting": {
+            "properties": {
+                "source": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "PatternInput": {
+            "properties": {
+                "detail": {
+                    "$ref": "#/definitions/Detail"
+                },
+                "detail-type": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "source": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "Provider": {
+            "properties": {
+                "alb": {
+                    "$ref": "#/definitions/Alb"
+                },
+                "apiGateway": {
+                    "$ref": "#/definitions/ApiGateway"
+                },
+                "apiKeys": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "apiName": {
+                    "type": "string"
+                },
+                "architecture": {
+                    "enum": [
+                        "arm64",
+                        "x86_64"
+                    ],
+                    "type": "string"
+                },
+                "cfnRole": {
+                    "type": "string"
+                },
+                "deploymentBucket": {
+                    "$ref": "#/definitions/DeploymentBucket"
+                },
+                "deploymentPrefix": {
+                    "type": "string"
+                },
+                "endpointType": {
+                    "enum": [
+                        "edge",
+                        "private",
+                        "regional"
+                    ],
+                    "type": "string"
+                },
+                "environment": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/Environment"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "ephemeralStorageSize": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                },
+                "eventBridge": {
+                    "$ref": "#/definitions/EventBridge"
+                },
+                "httpApi": {
+                    "$ref": "#/definitions/HttpApi"
+                },
+                "iam": {
+                    "$ref": "#/definitions/IamSettings"
+                },
+                "iamManagedPolicies": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "iamRoleStatements": {
+                    "items": {
+                        "$ref": "#/definitions/IamRoleStatement"
+                    },
+                    "type": "array"
+                },
+                "kmsKeyArn": {
+                    "type": "string"
+                },
+                "lambdaHashingVersion": {
+                    "type": "number"
+                },
+                "layers": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/definitions/Record<string,string>"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ]
+                    },
+                    "type": "array"
+                },
+                "logRetentionInDays": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                },
+                "logs": {
+                    "$ref": "#/definitions/Logs"
+                },
+                "memorySize": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                },
+                "name": {
+                    "enum": [
+                        "aws"
+                    ],
+                    "type": "string"
+                },
+                "notificationArns": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "profile": {
+                    "type": "string"
+                },
+                "region": {
+                    "type": "string"
+                },
+                "reservedConcurrency": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                },
+                "resourcePolicy": {
+                    "items": {
+                        "$ref": "#/definitions/ResourcePolicy"
+                    },
+                    "type": "array"
+                },
+                "role": {
+                    "type": "string"
+                },
+                "rolePermissionsBoundary": {
+                    "type": "string"
+                },
+                "rollbackConfiguration": {
+                    "$ref": "#/definitions/RollbackConfiguration"
+                },
+                "runtime": {
+                    "type": "string"
+                },
+                "stackName": {
+                    "type": "string"
+                },
+                "stackParameters": {
+                    "items": {
+                        "$ref": "#/definitions/StackParameters"
+                    },
+                    "type": "array"
+                },
+                "stackPolicy": {
+                    "items": {
+                        "$ref": "#/definitions/ResourcePolicy"
+                    },
+                    "type": "array"
+                },
+                "stackTags": {
+                    "$ref": "#/definitions/Tags"
+                },
+                "stage": {
+                    "type": "string"
+                },
+                "tags": {
+                    "$ref": "#/definitions/Tags"
+                },
+                "timeout": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                },
+                "tracing": {
+                    "$ref": "#/definitions/Tracing"
+                },
+                "usagePlan": {
+                    "$ref": "#/definitions/UsagePlan"
+                },
+                "versionFunctions": {
+                    "type": "boolean"
+                },
+                "vpc": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/Vpc"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "websocketsApiName": {
+                    "type": "string"
+                },
+                "websocketsApiRouteSelectionExpression": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Quota": {
+            "properties": {
+                "limit": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                },
+                "offset": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                },
+                "period": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "RabbitMq": {
+            "properties": {
+                "arn": {
+                    "type": "string"
+                },
+                "basicAuthArn": {
+                    "type": "string"
+                },
+                "batchSize": {
+                    "type": "number"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "queue": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Record<string,string>": {
+            "type": "object"
+        },
+        "Record<string,unknown>": {
+            "type": "object"
+        },
+        "RedrivePolicy": {
+            "properties": {
+                "deadLetterTargetArn": {
+                    "type": "string"
+                },
+                "deadLetterTargetImport": {
+                    "$ref": "#/definitions/DeadLetterTargetImport"
+                },
+                "deadLetterTargetRef": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "ResourcePolicy": {
+            "properties": {
+                "Action": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "additionalProperties": {},
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "Condition": {
+                    "additionalProperties": {},
+                    "type": "object"
+                },
+                "Effect": {
+                    "enum": [
+                        "Allow",
+                        "Deny"
+                    ],
+                    "type": "string"
+                },
+                "Principal": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "additionalProperties": {},
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "Resource": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "additionalProperties": {},
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "Resources": {
+            "properties": {
+                "Conditions": {
+                    "$ref": "#/definitions/ResourcesConditions"
+                },
+                "Description": {
+                    "type": "string"
+                },
+                "Outputs": {
+                    "$ref": "#/definitions/Outputs"
+                },
+                "Resources": {
+                    "$ref": "#/definitions/CloudFormationResources"
+                },
+                "extensions": {
+                    "$ref": "#/definitions/CloudFormationResources"
+                }
+            },
+            "type": "object"
+        },
+        "ResourcesConditions": {
+            "additionalProperties": {},
+            "type": "object"
+        },
+        "RestApiLogs": {
+            "properties": {
+                "accessLogging": {
+                    "type": "boolean"
+                },
+                "executionLogging": {
+                    "type": "boolean"
+                },
+                "format": {
+                    "type": "string"
+                },
+                "fullExecutionData": {
+                    "type": "boolean"
+                },
+                "level": {
+                    "enum": [
+                        "ERROR",
+                        "INFO"
+                    ],
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string"
+                },
+                "roleManagedExternally": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
+        "RollbackConfiguration": {
+            "properties": {
+                "MonitoringTimeInMinutes": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                },
+                "RollbackTriggers": {
+                    "items": {
+                        "$ref": "#/definitions/RollbackTrigger"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "RollbackTrigger": {
+            "properties": {
+                "Arn": {
+                    "type": "string"
+                },
+                "Type": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "S3": {
+            "properties": {
+                "bucket": {
+                    "type": "string"
+                },
+                "event": {
+                    "type": "string"
+                },
+                "existing": {
+                    "type": "boolean"
+                },
+                "rules": {
+                    "items": {
+                        "$ref": "#/definitions/S3Rule"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "S3Rule": {
+            "properties": {
+                "prefix": {
+                    "type": "string"
+                },
+                "suffix": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Schedule": {
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "input": {
+                    "$ref": "#/definitions/Input"
+                },
+                "inputPath": {
+                    "type": "string"
+                },
+                "inputTransformer": {
+                    "$ref": "#/definitions/InputTransformer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "rate": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "Service": {
+            "properties": {
+                "awsKmsKeyArn": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Sns": {
+            "properties": {
+                "arn": {
+                    "type": "string"
+                },
+                "displayName": {
+                    "type": "string"
+                },
+                "filterPolicy": {
+                    "$ref": "#/definitions/Record<string,unknown>"
+                },
+                "redrivePolicy": {
+                    "$ref": "#/definitions/RedrivePolicy"
+                },
+                "topicName": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Sqs": {
+            "properties": {
+                "arn": {
+                    "anyOf": [
+                        {
+                            "additionalProperties": {},
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "batchSize": {
+                    "description": "minimum: 1, maximum: 10000",
+                    "type": "number"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "filterPatterns": {
+                    "items": {
+                        "$ref": "#/definitions/FilterPattern"
+                    },
+                    "type": "array"
+                },
+                "functionResponseType": {
+                    "enum": [
+                        "ReportBatchItemFailures"
+                    ],
+                    "type": "string"
+                },
+                "maximumBatchingWindow": {
+                    "description": "minimum: 0, maximum: 300",
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "StackParameters": {
+            "properties": {
+                "ParameterKey": {
+                    "type": "string"
+                },
+                "ParameterValue": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Stream": {
+            "properties": {
+                "arn": {
+                    "anyOf": [
+                        {
+                            "additionalProperties": {},
+                            "type": "object"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                },
+                "batchSize": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "filterPatterns": {
+                    "items": {
+                        "$ref": "#/definitions/FilterPattern"
+                    },
+                    "type": "array"
+                },
+                "startingPosition": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                },
+                "type": {
+                    "enum": [
+                        "dynamodb",
+                        "kinesis"
+                    ],
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Tags": {
+            "additionalProperties": {
+                "type": "string"
+            },
+            "type": "object"
+        },
+        "Throttle": {
+            "properties": {
+                "burstLimit": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                },
+                "rateLimit": {
+                    "type": [
+                        "string",
+                        "number"
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "Tracing": {
+            "properties": {
+                "apiGateway": {
+                    "type": "boolean"
+                },
+                "lambda": {
+                    "enum": [
+                        "Active",
+                        "PassThrough",
+                        false,
+                        true
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "UsagePlan": {
+            "properties": {
+                "quota": {
+                    "$ref": "#/definitions/Quota"
+                },
+                "throttle": {
+                    "$ref": "#/definitions/Throttle"
+                }
+            },
+            "type": "object"
+        },
+        "Vpc": {
+            "properties": {
+                "securityGroupIds": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "subnetIds": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "Websocket": {
+            "properties": {
+                "authorizer": {
+                    "$ref": "#/definitions/WebsocketAuthorizer"
+                },
+                "route": {
+                    "type": "string"
+                },
+                "routeResponseSelectionExpression": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "WebsocketAuthorizer": {
+            "properties": {
+                "arn": {
+                    "type": "string"
+                },
+                "identitySource": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "WebsocketLogs": {
+            "properties": {
+                "level": {
+                    "enum": [
+                        "ERROR",
+                        "INFO"
+                    ],
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "properties": {
+        "app": {
+            "type": "string"
+        },
+        "configValidationMode": {
+            "enum": [
+                "error",
+                "off",
+                "warn"
+            ],
+            "type": "string"
+        },
+        "custom": {
+            "$ref": "#/definitions/Custom"
+        },
+        "deprecationNotificationMode": {
+            "enum": [
+                "error",
+                "warn",
+                "warn:summary"
+            ],
+            "type": "string"
+        },
+        "disabledDeprecations": {
+            "items": {
+                "type": "string"
+            },
+            "type": "array"
+        },
+        "enableLocalInstallationFallback": {
+            "type": "boolean"
+        },
+        "frameworkVersion": {
+            "type": "string"
+        },
+        "functions": {
+            "$ref": "#/definitions/Functions"
+        },
+        "layers": {
+            "$ref": "#/definitions/Layers"
+        },
+        "org": {
+            "type": "string"
+        },
+        "package": {
+            "$ref": "#/definitions/Package"
+        },
+        "plugins": {
+            "items": {
+                "type": "string"
+            },
+            "type": "array"
+        },
+        "provider": {
+            "$ref": "#/definitions/Provider"
+        },
+        "resources": {
+            "$ref": "#/definitions/Resources"
+        },
+        "service": {
+            "anyOf": [
+                {
+                    "$ref": "#/definitions/Service"
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
+        "tenant": {
+            "type": "string"
+        },
+        "unresolvedVariablesNotificationMode": {
+            "enum": [
+                "error",
+                "warn"
+            ],
+            "type": "string"
+        },
+        "useDotenv": {
+            "type": "boolean"
+        },
+        "variablesResolutionMode": {
+            "enum": [
+                "20210219",
+                "20210326"
+            ],
+            "type": "string"
+        }
+    },
+    "type": "object"
+}
+
