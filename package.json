@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/dannywrayuk/serverless-json-schema#readme",
   "dependencies": {
-    "@types/serverless": "^3.12.9",
+    "@types/serverless": "3.12.11",
     "gh-pages": "^5.0.0",
     "typescript-json-schema": "^0.55.0"
   }
